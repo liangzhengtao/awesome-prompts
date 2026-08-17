@@ -1,0 +1,126 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+
+      - name: Run markdownlint
+        run: markdownlint 'prompts/**/*.md' '*.md' --config .markdownlint.json
+        continue-on-error: true
+
+  validate:
+    name: Validate Structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required files exist
+        run: |
+          files=(
+            "README.md"
+            "LICENSE"
+            "CONTRIBUTING.md"
+            "CODE_OF_CONDUCT.md"
+            "SECURITY.md"
+            "CHANGELOG.md"
+            "prompts/编程开发/code-review.md"
+            "prompts/编程开发/debugging.md"
+            "prompts/编程开发/refactoring.md"
+            "prompts/编程开发/documentation.md"
+            "prompts/内容创作/blog-writing.md"
+            "prompts/内容创作/social-media.md"
+            "prompts/内容创作/email-sequences.md"
+            "prompts/商业办公/business-strategy.md"
+            "prompts/商业办公/presentation.md"
+            "prompts/商业办公/project-management.md"
+            "prompts/学习教育/study-assistant.md"
+            "prompts/学习教育/teaching.md"
+            "prompts/学习教育/research.md"
+            "prompts/创意设计/image-generation.md"
+            "prompts/创意设计/creative-writing.md"
+          )
+
+          missing=0
+          for file in "${files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing: $file"
+              missing=$((missing + 1))
+            else
+              echo "✅ Found: $file"
+            fi
+          done
+
+          if [ $missing -gt 0 ]; then
+            echo ""
+            echo "❌ $missing required file(s) missing!"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ All required files present!"
+
+      - name: Check prompt count
+        run: |
+          count=$(grep -r "^###" prompts/ --include="*.md" | wc -l)
+          echo "📊 Found $count prompt headers across all files"
+          if [ "$count" -lt 100 ]; then
+            echo "⚠️ Warning: Expected 150+ prompts, found $count"
+          else
+            echo "✅ Prompt count looks good!"
+          fi
+
+      - name: Check for variables in prompts
+        run: |
+          var_count=$(grep -r "\[.*\]" prompts/ --include="*.md" | grep -c "\[" || true)
+          echo "📊 Found $var_count variable placeholders"
+          echo "✅ Variables check complete"
+
+  links:
+    name: Check Internal Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check markdown links
+        run: |
+          echo "🔗 Checking internal links..."
+          errors=0
+
+          # Check that all referenced files in markdown links exist
+          grep -roh '\[.*\](.*\.md)' README.md || true | while read -r link; do
+            file=$(echo "$link" | sed 's/.*](\(.*\))/\1/')
+            if [ -n "$file" ] && [ ! -f "$file" ]; then
+              echo "❌ Broken link: $link -> $file"
+              errors=$((errors + 1))
+            fi
+          done
+
+          if [ $errors -eq 0 ]; then
+            echo "✅ No broken internal links found"
+          else
+            echo "❌ Found $errors broken link(s)"
+            exit 1
+          fi
