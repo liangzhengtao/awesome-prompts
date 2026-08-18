@@ -8,7 +8,7 @@ n<div align="center">
 
 # 🚀 Awesome Prompts
 
-**150+ battle-tested AI prompts for developers, creators, and professionals. Copy, paste, get results.**
+**150+ tried-and-true AI prompts for developers, creators, and professionals. Copy, paste, get results.**
 
 ---
 
