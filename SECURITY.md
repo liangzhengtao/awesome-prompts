@@ -27,7 +27,7 @@ If you discover a security vulnerability in this project, please report it respo
 - **Resolution**: We will work on a fix and coordinate disclosure
 - **Credit**: We will credit you in the fix announcement (unless you prefer anonymity)
 
-## Security Best Practices for Users
+## Security Proven Patterns for Users
 
 When using prompts from this collection:
 

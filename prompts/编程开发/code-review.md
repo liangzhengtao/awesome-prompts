@@ -9,7 +9,7 @@
 - [性能审查 / Performance Review](#性能审查--performance-review)
 - [可读性检查 / Readability Check](#可读性检查--readability-check)
 - [架构评审 / Architecture Review](#架构评审--architecture-review)
-- [综合审查 / Comprehensive Review](#综合审查--comprehensive-review)
+- [综合审查 / Complete Review](#综合审查--complete-review)
 
 ---
 
@@ -299,7 +299,7 @@
 
 ---
 
-## 综合审查 / Comprehensive Review
+## 综合审查 / Complete Review
 
 ### 15. 全面代码审查（Pull Request 风格）
 
