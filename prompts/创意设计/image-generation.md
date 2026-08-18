@@ -356,3 +356,32 @@ a futuristic AI brain neural network visualization, interconnected glowing nodes
 - ❌ 忽略光线描述（光线是画面氛围的关键）
 - ❌ 忽略构图（好的构图让画面更有冲击力）
 - ❌ 照搬别人的 Prompt 不做调整（不同模型需要不同策略）
+
+---
+
+## 中文版本
+
+> 🎨 AI 图像生成 Prompt 集合，覆盖风格修饰、构图关键词、质量提升和反向提示词，帮助你用文字精准控制 AI 生成图像。
+
+### 核心 Prompt 示例
+
+**艺术风格 Prompt：**
+[SUBJECT], [STYLE_KEYWORDS], [LIGHTING], [QUALITY]。风格关键词库包括：写实摄影（photorealistic, hyperrealistic, 8k）、油画风格（oil painting, impasto, Renaissance style）、水彩风格（watercolor painting, soft washes）、赛博朋克（cyberpunk, neon lights）、像素艺术（pixel art, 8-bit）、日本动漫（anime style, Studio Ghibli）、概念艺术（concept art, matte painting）、超现实主义（surrealism, dreamlike）等。
+
+**摄影风格 Prompt：**
+[SUBJECT], [CAMERA], [LENS], [LIGHTING], [MOOD]。摄影关键词库包括：相机（DSLR, Hasselblad, Leica）、镜头（85mm portrait lens, 24mm wide angle, macro lens）、光线（golden hour, blue hour, Rembrandt lighting）、胶片质感（Kodak Portra 400, Fujifilm Velvia）、景深（shallow depth of field, bokeh）。
+
+**完整人物肖像模板：**
+[性别] [年龄] [外貌特征], [表情], [服装], [姿势], [背景], [光线], [风格], [质量]。示例：a young East Asian woman in her late 20s, serene expression, wearing an elegant white silk blouse, sitting by a window, soft natural daylight, shallow depth of field, shot on Sony A7R V, 85mm f/1.4, Kodak Portra 400 film look, photorealistic, highly detailed skin texture。
+
+**通用反向提示词（Negative Prompt）：**
+通用反向：low quality, worst quality, blurry, out of focus, noise, grainy, artifacts, watermark, signature, text。人物反向：deformed, disfigured, mutated, ugly, bad anatomy, extra limbs, extra fingers, missing fingers。构图反向：out of frame, cut off, cropped, poorly composed, cluttered background。
+
+### 💡 使用技巧
+
+1. **分层构建**：主体 → 风格 → 光线 → 构图 → 质量，逐层添加关键词
+2. **权重控制**：在 Stable Diffusion 中用 `(keyword:1.5)` 控制权重
+3. **迭代优化**：先生成基本版本，再逐步添加修饰词细化
+4. **参考图+文字**：用参考图 + Prompt 组合效果更好（图生图）
+5. **模型适配**：不同模型对 Prompt 的响应方式不同，要针对性调整
+6. **避免冲突**：不要同时使用冲突的风格词（如"写实"和"卡通"）

@@ -374,3 +374,31 @@ DDL/Schema：
 - ❌ README 过于冗长，缺少快速开始指南
 - ❌ API 文档缺少错误码说明和示例
 - ❌ 注释过多反而降低可读性（好的代码应该自解释）
+
+---
+
+## 中文版本
+
+> 📝 专业文档 Prompt 集合，覆盖 README 生成、API 文档、代码注释、变更日志和架构文档，让文档编写高效且规范。
+
+### 核心 Prompt 示例
+
+**项目 README 生成：**
+为以下项目生成一份完整的 README.md。项目名称：[PROJECT_NAME]，项目描述：[PROJECT_DESCRIPTION]，技术栈：[TECH_STACK]，编程语言：[LANGUAGE]，包管理器：[PACKAGE_MANAGER]。请包含：项目标题+一句话描述+徽章、功能亮点（3-5 个核心特性）、安装指南（含多种安装方式）、快速开始（最小可用示例）、使用说明（含代码示例）、配置选项、贡献指南、许可证、致谢。
+
+**REST API 端点文档：**
+为以下 REST API 端点生成 OpenAPI/Swagger 文档。端点信息：URL: [ENDPOINT_URL]，Method: [HTTP_METHOD]，功能描述：[DESCRIPTION]，认证方式：[AUTH_METHOD]。请求参数：[REQUEST_PARAMS]，请求体：[REQUEST_BODY]，响应示例：[RESPONSE_EXAMPLES]。请生成完整的 OpenAPI 3.0 YAML 规范、请求参数说明、多种响应示例和认证说明。
+
+**函数级注释生成：**
+为以下函数/方法添加专业级注释。语言：[LANGUAGE]，代码：[CODE]。注释要求：遵循 [LANGUAGE] 的标准文档规范（JSDoc/docstring/Javadoc/Godoc），说明"做什么"而非"怎么做"，标注参数、返回值、异常，对复杂逻辑添加行内注释，添加使用示例。输出添加注释后的完整代码。
+
+**CHANGELOG 生成：**
+基于以下 Git 提交记录生成 CHANGELOG.md。提交记录：[COMMIT_LOG]，版本号：[VERSION]，发布日期：[RELEASE_DATE]。请按 Keep a Changelog 格式组织：Added（新增功能）、Changed（变更）、Deprecated（废弃）、Removed（移除）、Fixed（修复）、Security（安全）。每条记录用一句话概括面向最终用户。
+
+### 💡 使用技巧
+
+1. **指定受众**：告诉 AI 文档面向谁（新手/专家/运维/前端），产出质量会更高
+2. **提供代码示例**：给 AI 看到实际代码，生成的文档才准确
+3. **指定格式规范**：要求遵循 Google Style/PEP 257/JSDoc 等具体规范
+4. **要求版本同步**：文档生成后要求 AI 检查是否与最新代码一致
+5. **中英文都可**：根据团队需要选择语言，AI 可以轻松切换
